@@ -1,0 +1,1 @@
+    - create a workspace : ng new hotelInventoryApp /*--createApplication=false if we want a blank workspace*/ 
