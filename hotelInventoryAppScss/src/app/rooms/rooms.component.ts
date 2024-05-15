@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Room, RoomList } from './rooms';
+import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
 
 

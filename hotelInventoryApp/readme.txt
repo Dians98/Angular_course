@@ -5,5 +5,6 @@
     Syntax
       - the banana syntax () is used for event on angular
       - the box syntax [] is used for html property
-      - the interpolation {{}} is used for accessing variables
+      - the interpolation {{ }} is used for accessing variables
 
+      - Pipe | is used to transform data (read documentation)

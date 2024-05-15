@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hotelInventoryApp": {
+    "hotelInventoryAppScss": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,19 +17,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/hotel-inventory-app",
+            "outputPath": "dist/hotel-inventory-app-scss",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -62,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hotelInventoryApp:build:production"
+              "buildTarget": "hotelInventoryAppScss:build:production"
             },
             "development": {
-              "buildTarget": "hotelInventoryApp:build:development"
+              "buildTarget": "hotelInventoryAppScss:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "hotelInventoryApp:build"
+            "buildTarget": "hotelInventoryAppScss:build"
           }
         },
         "test": {
@@ -84,12 +90,13 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -98,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "cb612a93-222c-42cc-b386-6ba8617ea95a"
+    "analytics": "bf627f6e-7536-4fca-af08-fe4fa0c3451f"
   }
 }
