@@ -1,33 +1,47 @@
-<h6>Welcome to {{ hotelName }}</h6>
-<button (click)="toggle()"  class="btn btn-danger">
-  <p *ngIf="hidden == true">Show more</p>
-  <p *ngIf="hidden == false">Show less</p>
-</button>
-<!--
-<div [hidden] = "hidden" >
-  <h6>Number of rooms = {{numberOfRooms}}</h6>
+<div class="container">
+  <h6>Welcome to {{ hotelName }}</h6>
+  <button (click)="toggle()" class="btn btn-success" *ngIf="hidden == true">
+    Show more
+  </button>
+  <button (click)="toggle()" class="btn btn-danger" *ngIf="hidden == false">
+    Show less
+  </button>
+  <!--
+  <div [hidden] = "hidden" >
+    <h6>Number of rooms = {{numberOfRooms}}</h6>
+  </div>
+  -->
+  <div *ngIf="room.availableRoom > 0" [hidden]="hidden">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Room Number</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Amenities</th>
+          <th>Checkin / Checkout Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let room of roomList;
+            let even = even;
+            let odd = odd;
+            let idx = index
+          "
+          [ngClass]="{ even: even, odd: odd }"
+        >
+          <td>{{ room.roomNumber }}</td>
+          <td>{{ room.roomType }}</td>
+          <td>{{ room.price | currency : "EUR" }}</td>
+          <td>{{ room.amenities }}</td>
+          <td>
+            {{ room.checkinTime | date : "MMM d, y" }} /
+            {{ room.checkoutTime | date : "MMM d, y" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
--->
-<div *ngIf="room.availableRoom > 0" [hidden]="hidden">
-  <table>
-    <thead >
-      <tr >
-        <th>Room Number</th>
-        <th>Type</th>
-        <th>Price</th>
-        <th>Amenities</th>
-        <th>Checkin / Checkout Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let room of roomList; let even = even; let odd = odd; let idx = index" [ngClass]="{'even' : even, 'odd': odd}">
-        <td>{{ room.roomNumber }}</td>
-        <td>{{ room.roomType }}</td>
-        <td>{{ room.price | currency: 'EUR'}}</td>
-        <td>{{ room.amenities }}</td>
-        <td>{{ room.checkinTime | date :"MMM d, y"}} / {{room.checkoutTime | date :"MMM d, y"}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
