@@ -1,5 +1,11 @@
 <div class="container">
-  <h6>Welcome to {{ hotelName }}</h6>
+  <div *ngIf="!selectedRoom">
+    <h6>Welcome to {{ hotelName }}</h6>
+  </div>
+  <div *ngIf="selectedRoom">
+    <h6>You have selected the following room : {{selectedRoom |json}}</h6>
+  </div>
+
   <button (click)="toggle()" class="btn btn-success" *ngIf="hidden == true">
     Show more
   </button>
@@ -12,36 +18,11 @@
   </div>
   -->
   <div *ngIf="room.availableRoom > 0" [hidden]="hidden">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Room Number</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>Amenities</th>
-          <th>Checkin / Checkout Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let room of roomList;
-            let even = even;
-            let odd = odd;
-            let idx = index
-          "
-          [ngClass]="{ even: even, odd: odd }"
-        >
-          <td>{{ room.roomNumber }}</td>
-          <td>{{ room.roomType }}</td>
-          <td>{{ room.price | currency : "EUR" }}</td>
-          <td>{{ room.amenities }}</td>
-          <td>
-            {{ room.checkinTime | date : "MMM d, y" }} /
-            {{ room.checkoutTime | date : "MMM d, y" }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!--
+      That is how we pass data between component
+      roomsListInput as a variable on the roomlist component,
+      here it is used as a properrty on the component
+    -->
+    <app-room-list [roomsListInput] = roomList (selectedRoom)="selectRoom($event)"></app-room-list>
   </div>
 </div>
