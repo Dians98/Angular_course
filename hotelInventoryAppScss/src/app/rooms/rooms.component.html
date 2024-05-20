@@ -23,6 +23,7 @@
       roomsListInput as a variable on the roomlist component,
       here it is used as a properrty on the component
     -->
-    <app-room-list [roomsListInput] = roomList (selectedRoom)="selectRoom($event)"></app-room-list>
+    <button class="btn" (click)="translate()">Traduire le titre</button>
+    <app-room-list [roomsListInput] = roomList (selectedRoom)="selectRoom($event)" [title]="title"></app-room-list>
   </div>
 </div>

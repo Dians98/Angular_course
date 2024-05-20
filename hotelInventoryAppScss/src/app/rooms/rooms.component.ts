@@ -15,6 +15,7 @@ import { RoomListComponent } from '../room-list/room-list.component';
 })
 export class RoomsComponent implements OnInit{
   hotelName = 'Hilton';
+  numberOfRooms = 10;
   hidden = true;
   room: Room = { totalRoom: 0, availableRoom: 0 };
   roomList: RoomList[] = [];
@@ -22,7 +23,8 @@ export class RoomsComponent implements OnInit{
    * We added ! in order to not get the error
    * as we are using strict mode
    */
-  selectedRoom !:RoomList
+  selectedRoom !:RoomList;
+  title: String = 'Veuillez-trouver ci-dessous la liste de nos chambres disponible';
 
   constructor() {}
 
@@ -63,6 +65,10 @@ export class RoomsComponent implements OnInit{
 
   toggle(): void {
     this.hidden = !this.hidden;
+
+  }
+  translate():void{
+    this.title = "See Below list of our available room";
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'hotelInventoryApp';
-  role = 'admin'
+  role = 'admin';
+
+  @ViewChild('user', {read: ViewContainerRef }) ViewContainerRef !: ViewContainerRef;
+
+  ngAfterViewInit(): void {
+    const componentRef = this.ViewContainerRef.createComponent(RoomsComponent);
+    componentRef.instance.hotelName = "Test Ng After View Init";
+  }
 }
